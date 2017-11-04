@@ -1,6 +1,6 @@
 var https = require('https'); //need to http
 var http = require('http');
-var crypto = ['BTC','ETH','BCH','XRP','LTC','ETC'];
+var crypto = ['BTC','ETH','BCH','XRP','LTC','ETC', 'IOT'];
 var admin = require("firebase-admin");
 var serviceAccount = require("ECH-Portfolio-Manager-989fb0879c82.json");
 var arrayOfInfo = [];
@@ -104,9 +104,9 @@ function getCryptoData(timeRange,symb,p){
 function writeToServer(currentCoin){
 	var symbolsRef = ref.child("crypto/" + currentCoin.symb);
 	symbolsRef.set({
-		price: currentCoin.price,
+		price: parseFloat(currentCoin.price).toFixed(2),
 		volume: currentCoin.volume,
-		change: currentCoin.change,
+		change: parseFloat(currentCoin.change).toFixed(2),
 		marketCap : currentCoin.marketCap
 	});
 }

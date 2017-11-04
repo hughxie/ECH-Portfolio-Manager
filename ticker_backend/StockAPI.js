@@ -9,11 +9,21 @@ admin.initializeApp({
 });
 var db = admin.database();
 var ref = db.ref("/");
+var hottestStock;
 
 
-var stocks = ['CYBR', 'SHOP', 'IBM', 'AAPL', 'ANF', 'TWX', 'T', 'SNAP', 'P','AMZN','AMD','PYPL','UA','WFC','JCP','M','MRO','BAC','GOOG','NFLX','NFLX'];
+var stocks = ['CYBR', 'SHOP', 'IBM', 'AAPL', 'ANF', 'TWX', 'T', 'SNAP', 'P','AMZN','AMD','PYPL','UA','WFC','JCP','M','MRO','BAC','GOOG','NFLX','MSFT','NOK','VMW','GE','CBS','F', 'FB', 'TSLA', 'TWTR','TWTR'];
 
 getStockData('INTRADAY',stocks[0],1,0);
+var hottestStock = {
+	name: 'name',
+	price: 0,
+	high: 0,
+	low: 0,
+	close: 0,
+	volume: 0,
+	change: 0
+}
 //timer = setInterval(middleFunc, 60000);
 http.createServer(function (request,response){
 
@@ -22,6 +32,15 @@ http.createServer(function (request,response){
 
 function middleFunc(){
 	arrayOfInfo = [];
+	var hottestStock = {
+		name: name,
+		price: 0,
+		high: 0,
+		low: 0,
+		close: 0,
+		volume: 0,
+		change: 0
+	}
 	getStockData('INTRADAY',stocks[0],1,0);
 
 }
@@ -118,6 +137,7 @@ function getStockData(timeRange,symb,interval, p){
 function retrieveNameFromSymbol(symb, y){
 	var options = {
 		host: 'finance.yahoo.com',
+
 		port: 443,
 		path: '/quote/' + symb
 	};
@@ -125,7 +145,6 @@ function retrieveNameFromSymbol(symb, y){
 	https.get(options, function(res) {
 		res.on("data", function (chunk) {
 			content += chunk;
-
 		})
 		res.on("end",function (){
 			var tempArray0 = content.split("<h1 class=\"D(ib) Fz(18px)\" data-reactid=\"7\">");
@@ -141,14 +160,27 @@ function retrieveNameFromSymbol(symb, y){
 }
 
 function writeToServer(symb, currentStock, name){
+	if(currentStock.change > hottestStock.change){
+		hottestStock = currentStock;
+	}
+	//var hottestRef = ref.child("hottestStock/");
+	// hottestRef.set({
+	// 	name: hottestStock.name,
+	// 	price: hottestStock.price,
+	// 	high: hottestStock.high,
+	// 	low: hottestStock.low,
+	// 	close: hottestStock.close,
+	// 	volume: hottestStock.volume,
+	// 	change: hottestStock.change
+	// });
 	var symbolsRef = ref.child("symbols/" + symb);
 	symbolsRef.set({
 		name: name,
-		price: currentStock.price,
-		high: currentStock.high,
-		low: currentStock.low,
-		close: currentStock.close,
+		price: parseFloat(currentStock.price).toFixed(2),
+		high: parseFloat(currentStock.high).toFixed(2),
+		low: parseFloat(currentStock.low).toFixed(2),
+		close: parseFloat(currentStock.close).toFixed(2),
 		volume: currentStock.volume,
-		change: currentStock.change
+		change: parseFloat(currentStock.change).toFixed(2),
 	});
 }
