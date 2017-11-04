@@ -70,15 +70,40 @@ function getStockData(timeRange,symb,interval, p){
 				}
 				else {
 					p++;
-					var tempObj = {}
+					var tempObj = {};
 					tempObj.symb = symb;
 					tempObj.price = currentPrice;
 					tempObj.high = currentHigh;
 					tempObj.low = currentLow;
 					tempObj.close = currentClose;
 					tempObj.volume = currentVolume;
-					arrayOfInfo.push(tempObj);
-					getStockData('INTRADAY',stocks[p],1, p);
+					var options2 = {
+						host: 'www.alphavantage.co',
+						path: '/query?function=TIME_SERIES_DAILY&symbol=' + symb + '&interval=' + interval + 'min&apikey=9RXP94XNJ6BMS8GL',
+						port: 443,
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json'
+						}
+					};
+
+					var req1 = https.get(options2, function(res1) {
+						var content1 = ''
+						res1.on("data", function (chunk1) {
+							content1 += chunk1;
+						})
+						res1.on("end",function (){
+							var obj1 = JSON.parse(content1);
+							var message1 =  obj1['Time Series (Daily)'][Object.keys(obj1['Time Series (Daily)'])[0]];
+							var closing = message1['4. close'];
+							var change = (currentPrice - closing)/closing * 100;
+							tempObj.change = change;
+							arrayOfInfo.push(tempObj);
+							getStockData('INTRADAY',stocks[p],1, p);
+						})
+
+					});
+
 				}
 			}
 		})
@@ -123,6 +148,7 @@ function writeToServer(symb, currentStock, name){
 		high: currentStock.high,
 		low: currentStock.low,
 		close: currentStock.close,
-		volume: currentStock.volume
+		volume: currentStock.volume,
+		change: currentStock.change
 	});
 }
