@@ -4,18 +4,6 @@ import { NgClass } from '@angular/common';
 
 
 
-
-
-import { Stock } from './stock';
-
-const STOCKS: Stock[] = [
-  {id: 1, fullName: 'Google', symbol: 'GOOG', currentPrice: 625.67, netPercent: 2.34, netChange: 7.95},
-  {id: 2, fullName: 'Apple', symbol: 'AAPL', currentPrice: 123, netPercent: 1.33, netChange: 6.51},
-  {id: 3, fullName: 'Shopify', symbol: 'SHOP', currentPrice: 93.32, netPercent: 4.6, netChange: 9.3},
-  {id: 4, fullName: 'Royal Bank of Canada', symbol: 'RBC', currentPrice: 94, netPercent: 1.71, netChange: 0.98},
-  {id: 5, fullName: 'Bank of Montreal', symbol: 'BMO', currentPrice: 52, netPercent: 3.64, netChange: 8.42}
-];
-
 @Component({
   selector: 'user-home',
   templateUrl: './user-home.component.html',
@@ -24,10 +12,15 @@ const STOCKS: Stock[] = [
 })
 
 export class UserHomeComponent {
-  stocks = STOCKS;
-  selectedStock: Stock;
   symbols : FirebaseListObservable<any[]>;
   cryptos : FirebaseListObservable<any[]>;
+
+
+  overviewSymbol : String = null;
+  overviewName : String = null;
+  overviewPrice : number = null;
+  overviewChange : number = null;
+  overviewVolume : number = null;
   constructor(af: AngularFireDatabase) {
     this.symbols = af.list('symbols');
     this.cryptos = af.list('crypto');
@@ -35,5 +28,11 @@ export class UserHomeComponent {
 
   selectStock(symbol) {
     console.log(symbol);
+
+    this.overviewSymbol = symbol.$key;
+    this.overviewName = symbol.name;
+    this.overviewPrice = symbol.change;
+    this.overviewChange = symbol.change;
+    this.overviewVolume = symbol.volume;
   }
 }
