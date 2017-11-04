@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { NgClass } from '@angular/common';
+
 
 
 
@@ -25,9 +27,10 @@ export class UserHomeComponent {
   stocks = STOCKS;
   selectedStock: Stock;
   symbols : FirebaseListObservable<any[]>;
-
+  cryptos : FirebaseListObservable<any[]>;
   constructor(af: AngularFireDatabase) {
     this.symbols = af.list('symbols');
+    this.cryptos = af.list('crypto');
   }
 
   selectStock(symbol) {
