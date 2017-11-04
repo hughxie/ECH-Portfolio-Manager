@@ -1,6 +1,23 @@
-<ul>
-  <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
-    {{symbol.name}}
-    {{symbol.price}}
-  </h5>
-</ul>
+<div style="display:table">
+  <div style="display:table-row">
+    <div style="display:table-cell">
+      <ul>
+        <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
+          {{symbol.$key}}
+        </h5>
+      </ul>
+    </div>
+
+    <div style="display:table-cell; padding-left:50px">
+      <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
+        {{symbol.price}}
+      </h5>
+    </div>
+
+    <div style="display:table-cell; padding-left:50px">
+      <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
+        {{symbol.change}}
+      </h5>
+    </div>
+  </div>
+</div>
