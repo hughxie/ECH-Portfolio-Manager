@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AngularFireDatabase} from 'angularfire2/database';
 //import { FirebaseListObservable } from 'angularfire2';
 
+//igi
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
