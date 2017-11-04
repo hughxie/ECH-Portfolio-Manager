@@ -27,10 +27,10 @@ export class UserHomeComponent {
   symbols : FirebaseListObservable<any[]>;
 
   constructor(af: AngularFireDatabase) {
-    this.symbols = af.list('crypto');
+    this.symbols = af.list('symbols');
   }
 
-  onSelect(stock: Stock): void {
-    this.selectedStock = stock;
+  selectStock(symbol) {
+    console.log(symbol);
   }
 }
