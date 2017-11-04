@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AngularFireDatabase} from 'angularfire2/database';
+import { FirebaseListObservable } from 'angularfire2';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [AngularFireDatabase]
 })
+
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  symbols : FirebaseListObservable<any>;
+
+  constructor(public navCtrl: NavController, af: AngularFireDatabase) {
+
+    this.symbols = af.list('/symbols');
 
   }
 

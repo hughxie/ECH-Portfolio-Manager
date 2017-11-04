@@ -12,6 +12,9 @@ log.txt
 .vscode/
 npm-debug.log*
 
+# configuration files
+/src/app/app.firebase.config.ts
+
 .idea/
 .sourcemaps/
 .sass-cache/
