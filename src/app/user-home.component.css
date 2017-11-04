@@ -49,3 +49,7 @@
   align-content: space-between;
   list-style-type: none;
 }
+
+body {
+  overflow-y: hidden;
+}
