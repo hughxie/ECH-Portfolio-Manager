@@ -25,3 +25,28 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+##Version Data
+
+    _                      _                 ____ _     ___
+   / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+  / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+ / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+/_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+           |___/
+@angular/cli: 1.4.9
+node: 6.11.0
+os: darwin x64
+@angular/animations: 4.4.6
+@angular/common: 4.4.6
+@angular/compiler: 4.4.6
+@angular/core: 4.4.6
+@angular/forms: 4.4.6
+@angular/http: 4.4.6
+@angular/platform-browser: 4.4.6
+@angular/platform-browser-dynamic: 4.4.6
+@angular/router: 4.4.6
+@angular/cli: 1.4.9
+@angular/compiler-cli: 4.4.6
+@angular/language-service: 4.4.6
+typescript: 2.3.4
