@@ -2,5 +2,6 @@
   "name": "ECH-Portfolio-Manager",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {},
+  "gulpStartupTasks": ["sass", "watch"]
 }

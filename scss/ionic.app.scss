@@ -1,0 +1,15 @@
+$light: #DEF2F1;
+$stable: #FEFFFF;
+$royal: #2B7A78;
+$dark: #17252A;
+$positive: #A1ECE9;
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss";
+ion-view,.pane,.view {
+	background-color: #DEF2F1;
+}
+
+body {
+	color: #17252A;
+}
+
