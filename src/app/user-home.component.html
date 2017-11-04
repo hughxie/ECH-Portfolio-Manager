@@ -20,10 +20,39 @@
         {{symbol.change}}
       </h5>
     </div>
-  </div>
-</div>
+    <div style="display:table-cell; padding-left:200px">
 
-<div style="display:table">
+      <div style="display:table-row">
+      <div style="display:table-cell">
+      <div *ngIf="this.overviewSymbol" style="display:table">
+        <div class="marketInfo">
+          <div class="left">
+            <h4>Market: {{overviewSymbol}} </h4>
+            <div class=""><label>{{overviewName}}</label></div>
+            <div class=""><label>Current price:</label>${{overviewPrice}}</div>
+          </div>
+          <div class="right">
+            <h4>Today's Change</h4>
+            <div class=""><label>Net Change: </label>${{overviewChange}}</div>
+            <div class=""><label>Volume: </label>${{overviewVolume}}</div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="graph" style="height=400px; width=auto;">
+
+        </div>
+        <div class="buttonRow">
+          <button type="button" name="Graph">Graph</button>
+          <button type="button" name="KeyCompanyMetrics">KCM</button>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
   <div style="display:table-row">
     <div style="display:table-cell">
       <ul>
@@ -45,27 +74,7 @@
       </h5>
     </div>
   </div>
-</div>
 
-<div *ngIf="this.overviewSymbol">
-  <div class="marketInfo">
-    <div class="left">
-      <h4>Market: {{overviewSymbol}} </h4>
-      <div class=""><label>{{overviewName}}</label></div>
-      <div class=""><label>Current price:</label>${{overviewPrice}}</div>
-    </div>
-    <div class="right">
-      <h4>Today's Change</h4>
-      <div class=""><label>Net Change: </label>${{overviewChange}}</div>
-      <div class=""><label>Volume: </label>${{overviewVolume}}</div>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-  <div class="graph" style="height=400px; width=auto;">
 
-  </div>
-  <div class="buttonRow">
-    <button type="button" name="Graph">Graph</button>
-    <button type="button" name="KeyCompanyMetrics">KCM</button>
-  </div>
+
 </div>
