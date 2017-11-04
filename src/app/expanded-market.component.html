@@ -1,0 +1,21 @@
+<div *ngIf="stock">
+  <div class="marketInfo">
+    <div class="left">
+      <h3>Market: {{stock.symbol}} </h3>
+      <div class="">{{stock.fullName}}</div>
+      <div class="">{{stock.currentPrice}}</div>
+    </div>
+    <div class="right">
+      <h5>Today's Change</h5>
+      <div class=""><label>Net %: </label>{{stock.netPercent}}%</div>
+      <div class=""><label>Net Change: </label>${{stock.netChange}}</div>
+    </div>
+  </div>
+  <div class="graph" style="height=400px; width=auto;">
+
+  </div>
+  <div class="buttonRow">
+    <button type="button" name="Graph">Graph</button>
+    <button type="button" name="KeyCompanyMetrics">KCM</button>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let stock of stocks" [class.selected]="stock === selectedStock" (click)="onSelect(stock)" class="stockList">
+    <div class="listItems">
+      <h4><span style="margin-right: 30px;">{{stock.symbol}}</span><span style="margin-right: 30px;">${{stock.currentPrice}}</span><span style="margin-right: 30px;">{{stock.netPercent}}%</span></h4>
+    </div>
+  </li>
+</ul>
+<expanded-market [stock]="selectedStock"></expanded-market>
