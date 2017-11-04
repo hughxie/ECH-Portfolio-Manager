@@ -1,0 +1,26 @@
+$light: #DEF2F1;
+$stable: #B1DDDC;
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss";
+.marketInfo {
+	width: 50%;
+	height: 100px;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.fixed {
+	position: sticky;
+	top: 0;
+}
+
+ion-view,.pane,.view {
+	background-color: #DEF2F1;
+}
+
