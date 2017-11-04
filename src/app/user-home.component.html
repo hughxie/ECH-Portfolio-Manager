@@ -1,6 +1,9 @@
 <ul>
-  <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
-    {{symbol.name}}
-    {{symbol.price}}
-  </h5>
+
+  <li *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
+    <div class="symbol">
+      {{symbol.$key}}
+      {{symbol.price}}
+    </div>
+  </li>
 </ul>
