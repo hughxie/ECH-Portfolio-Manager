@@ -4,5 +4,9 @@
       <h4><span style="margin-right: 30px;">{{stock.symbol}}</span><span style="margin-right: 30px;">${{stock.currentPrice}}</span><span style="margin-right: 30px;">{{stock.netPercent}}%</span></h4>
     </div>
   </li>
+
+  <li *ngFor="let symbol of symbols | async">
+    {{symbol.price}}
+  </li>
 </ul>
 <expanded-market [stock]="selectedStock"></expanded-market>

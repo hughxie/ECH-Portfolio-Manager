@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
+
+
 
 import { Stock } from './stock';
 
@@ -10,16 +14,21 @@ const STOCKS: Stock[] = [
   {id: 5, fullName: 'Bank of Montreal', symbol: 'BMO', currentPrice: 52, netPercent: 3.64, netChange: 8.42}
 ];
 
-
 @Component({
   selector: 'user-home',
   templateUrl: './user-home.component.html',
-  styleUrls: [ './user-home.component.css' ]
+  styleUrls: [ './user-home.component.css' ],
+  providers: [AngularFireDatabase]
 })
 
 export class UserHomeComponent {
   stocks = STOCKS;
   selectedStock: Stock;
+  symbols : FirebaseListObservable<any[]>;
+
+  constructor(af: AngularFireDatabase) {
+    this.symbols = af.list('crypto');
+  }
 
   onSelect(stock: Stock): void {
     this.selectedStock = stock;

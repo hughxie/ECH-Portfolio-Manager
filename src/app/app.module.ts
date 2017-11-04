@@ -6,6 +6,13 @@ import { AppComponent } from './app.component';
 import { ExpandedMarketComponent } from './expanded-market.component';
 import { UserHomeComponent } from './user-home.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { FIREBASE_CONFIG } from './app.firebase.config';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +21,8 @@ import { UserHomeComponent } from './user-home.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(FIREBASE_CONFIG)
   ],
   providers: [],
   bootstrap: [AppComponent]
