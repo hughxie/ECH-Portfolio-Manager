@@ -31,7 +31,7 @@ export class UserHomeComponent {
 
     this.overviewSymbol = symbol.$key;
     this.overviewName = symbol.name;
-    this.overviewPrice = symbol.change;
+    this.overviewPrice = symbol.price;
     this.overviewChange = symbol.change;
     this.overviewVolume = symbol.volume;
   }
