@@ -1,6 +1,6 @@
 label {
   display: inline-block;
-  width: 10em;
+  width: 9em;
   margin: .5em 0;
   color: #607D8B;
   font-weight: bold;
@@ -32,7 +32,7 @@ button:disabled {
 }
 .right {
   float:right;
-  margin-right: 900px;
+  margin-right: 800px;
 }
 .clearfix {
   float:clear;

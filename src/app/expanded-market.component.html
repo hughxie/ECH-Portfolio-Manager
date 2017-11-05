@@ -1,12 +1,12 @@
 <div *ngIf="stock">
   <div class="marketInfo">
     <div class="left">
-      <h4>Market: {{stock.symbol}} </h4>
+      <h4><label>Market: </label>{{stock.symbol}} </h4>
       <div class=""><label>{{stock.fullName}}</label></div>
-      <div class=""><label>Current price:</label>${{stock.currentPrice}}</div>
+      <div class=""><label>Current price: </label>${{stock.currentPrice}}</div>
     </div>
     <div class="right">
-      <h4>Today's Change</h4>
+      <h4><label>Today's Change</label></h4>
       <div class=""><label>Net %: </label>{{stock.netPercent}}%</div>
       <div class=""><label>Net Change: </label>${{stock.netChange}}</div>
     </div>
