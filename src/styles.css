@@ -18,6 +18,16 @@ body, input[text], button {
   color: #888;
   font-family: Cambria, Georgia;
 }
+.appRoot{
+  float:left;
+}
+/*#chart_div{
+
+  align: right;
+}*/
+.clearFix{
+  clear:both;
+}
 /* everywhere else */
 * {
   font-family: Arial, Helvetica, sans-serif;
