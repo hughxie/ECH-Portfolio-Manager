@@ -1,80 +1,142 @@
-<h2>Stocks</h2>
-<div style="display:table">
-  <div style="display:table-row" >
-    <div style="display:table-cell">
-      <ul>
-        <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
-          {{symbol.$key}}
-        </h5>
-      </ul>
-    </div>
+<html>
+  <head>
 
-    <div style="display:table-cell; padding-left:50px">
-      <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
-        {{symbol.price}}
-      </h5>
-    </div>
+  </head>
+  <body>
 
-    <div style="display:table-cell; padding-left:50px">
-      <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
-        {{symbol.change}}
-      </h5>
-    </div>
-    <div style="display:table-cell; padding-left:200px; position:fixed">
-      <div style="display:table-row">
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['treemap']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.visualization.events.addListener(treemap, 'select', selectHandler);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Location', 'Parent', 'Volume%', 'upDown%'],
+          ['Portfolio',    null, 0,  0],
+          ['America',   'Portfolio', 10, 0],
+          ['Europe',    'Portfolio', 20, 20],
+          ['Asia',      'Portfolio', 30, 30],
+          ['Australia', 'Portfolio', 40, 40],
+          ['Africa',    'Portfolio', 50, 50],
+          ['Ame1rica',   'Portfolio',60, 60],
+          ['Eur1ope',    'Portfolio',70, 70],
+          ['As1ia',      'Portfolio',80, 80],
+          ['Aus1tralia', 'Portfolio',90, 90],
+          ['Afri1ca',    'Portfolio',100, 100],
+        ]);
+
+        var options  = {
+          'highlightOnMouseOver': false,
+          'enableInteractivity' : false,
+          'tooltip': {isHtml: false},
+          minColor: '#f00',
+          midColor: '#ddd',
+          maxColor: '#0d0',
+          headerHeight: 15,
+          fontColor: 'black',
+          fontSize: '15',
+          showScale: false,
+
+        }
+        tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+        tree.draw(data, options);
+        window.onresize = function(){ location.reload(); }
+
+      }
+    </script>
+
+    <h2>Stocks</h2>
+    <div style="display:table">
+      <div style="display:table-row" >
         <div style="display:table-cell">
-            <div *ngIf="this.overviewSymbol" style="display:table">
-                <div class="marketInfo">
-                  <div class="left">
-                    <h4>Market: {{overviewSymbol}}</h4>
-                    <div class=""><label>{{overviewName}}</label></div>
-                    <div class=""><label>Current price: </label> ${{overviewPrice}}</div>
-                  </div>
-                  <div class="right">
-                    <h4>Today's Change</h4>
-                    <div class=""><label>Net Change: </label> ${{overviewChange}}</div>
-                    <div class=""><label>Volume: </label> {{overviewVolume}}</div>
-                  </div>
-                  <div class="clearfix"></div>
-                </div>
+          <h4 style = "margin-left:40px;">Ticker</h4>
+          <ul>
+            <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
+              {{symbol.$key}}
+            </h5>
+          </ul>
+        </div>
 
-                <div class="graph" style="height=400px; width=auto;">
+        <div style="display:table-cell; padding-left:50px">
+          <h4>Price $</h4>
+          <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
+            {{symbol.price}}
+          </h5>
+        </div>
 
-                </div>
-                <div class="buttonRow">
-                  <button type="button" name="Graph">Graph</button>
-                  <button type="button" name="KeyCompanyMetrics">KCM</button>
+        <div style="display:table-cell; padding-left:50px">
+          <h4>Price Δ</h4>
+          <h5 *ngFor="let symbol of symbols | async" (click)="selectStock(symbol)">
+            {{symbol.change}}
+          </h5>
+        </div>
+        <div style="display:table-cell; padding-left:200px; position:fixed">
+          <div style="display:table-row">
+            <div style="display:table-cell">
+                <div *ngIf="this.overviewSymbol" style="display:table">
+                    <div class="marketInfo">
+                      <div class="left">
+                        <h4>Market: {{overviewSymbol}}</h4>
+                        <div class=""><label>{{overviewName}}</label></div>
+                        <div class=""><label>Current price: </label> ${{overviewPrice}}</div>
+                      </div>
+                      <div class="right">
+                        <h4>Today's Change</h4>
+                        <div class=""><label>Net Change: </label> ${{overviewChange}}</div>
+                        <div class=""><label>Volume: </label> {{overviewVolume}}</div>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                    <div class="graph" style="height=400px; width=auto;">
+
+                    </div>
+                    <div class="buttonRow">
+                      <button type="button" name="Graph">Graph</button>
+                      <button type="button" name="KeyCompanyMetrics">KCM</button>
+                    </div>
                 </div>
             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <h2>Cryptos</h2>
+    <div style="display:table">
+      <div style="display:table-row" >
+        <div style="display:table-cell">
+          <ul>
+            <h4>Ticker</h4>
+            <h5 *ngFor="let symbol of cryptos | async" (click)="selectStock(symbol)">
+              {{symbol.$key}}
+            </h5>
+          </ul>
+        </div>
+
+        <div style="display:table-cell; padding-left:50px">
+          <h4>Price $</h4>
+          <h5 *ngFor="let symbol of cryptos | async" (click)="selectStock(symbol)">
+            {{symbol.price}}
+          </h5>
+
+        </div>
+
+        <div style="display:table-cell; padding-left:50px">
+          <h4>Price Δ</h4>
+          <h5 *ngFor="let symbol of cryptos | async" (click)="selectStock(symbol)">
+            {{symbol.change}}
+          </h5>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-
-
-<h2>Cryptos</h2>
-<div style="display:table">
-  <div style="display:table-row" >
-    <div style="display:table-cell">
-      <ul>
-        <h5 *ngFor="let symbol of cryptos | async" (click)="selectStock(symbol)">
-          {{symbol.$key}}
-        </h5>
-      </ul>
-    </div>
-
-    <div style="display:table-cell; padding-left:50px">
-      <h5 *ngFor="let symbol of cryptos | async" (click)="selectStock(symbol)">
-        {{symbol.price}}
-      </h5>
-    </div>
-
-    <div style="display:table-cell; padding-left:50px">
-      <h5 *ngFor="let symbol of cryptos | async" (click)="selectStock(symbol)">
-        {{symbol.change}}
-      </h5>
-    </div>
-  </div>
-</div>
+  </body>
+    <div id="chart_div" style="position:fixed;
+      width: calc(50%-50px);
+      height: calc(85% - 50px);  font: Arial; align: right;  float: right; right: 0;
+      top: 25;
+      margin: 25px;"></div>
+</html>
