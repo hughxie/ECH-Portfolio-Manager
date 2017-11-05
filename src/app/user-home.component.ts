@@ -35,4 +35,5 @@ export class UserHomeComponent {
     this.overviewChange = symbol.change;
     this.overviewVolume = symbol.volume;
   }
+
 }
