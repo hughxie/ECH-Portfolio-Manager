@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['treemap']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.visualization.events.addListener(treemap, 'select', selectHandler);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Location', 'Parent', 'Volume%', 'upDown%'],
+          ['Portfolio',    null, 0,  0],
+          ['America',   'Portfolio', 10, 0],
+          ['Europe',    'Portfolio', 20, 20],
+          ['Asia',      'Portfolio', 30, 30],
+          ['Australia', 'Portfolio', 40, 40],
+          ['Africa',    'Portfolio', 50, 50],
+          ['Ame1rica',   'Portfolio',60, 60],
+          ['Eur1ope',    'Portfolio',70, 70],
+          ['As1ia',      'Portfolio',80, 80],
+          ['Aus1tralia', 'Portfolio',90, 90],
+          ['Afri1ca',    'Portfolio',100, 100],
+        ]);
+
+        var options  = {
+          'highlightOnMouseOver': false,
+          'enableInteractivity' : false,
+          'tooltip': {isHtml: false},
+          minColor: '#f00',
+          midColor: '#ddd',
+          maxColor: '#0d0',
+          headerHeight: 15,
+          fontColor: 'black',
+          fontSize: '',
+          showScale: false,
+
+
+
+        }
+
+
+        tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+        tree.draw(data, options);
+        window.onresize = function(){ location.reload(); }
+
+      }
+
+
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="position: fixed;
+  width: calc(100% - 50px);
+  height: calc(100% - 50px);
+  margin: 25px;"></div>
+  </body>
+</html>
